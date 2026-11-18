@@ -1,0 +1,11 @@
+{
+  "name": "pc-temizlik",
+  "owner": { "name": "AhmetKaan19" },
+  "plugins": [
+    {
+      "name": "pc-temizlik",
+      "source": "./",
+      "description": "Bilgisayar temizliği: tara, grupla, sor, çöpe taşı, doğrula."
+    }
+  ]
+}

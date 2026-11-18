@@ -1,0 +1,9 @@
+{
+  "name": "pc-temizlik",
+  "version": "1.0.0",
+  "description": "Mac ve Windows bilgisayarları sahibiyle birlikte tarar, bulguları gruplar ve sadece onaylananları çöpe taşır.",
+  "author": { "name": "AhmetKaan19" },
+  "repository": "https://github.com/AhmetKaan19/pc-temizlik",
+  "license": "MIT",
+  "keywords": ["cleanup", "disk", "macos", "windows", "privacy"]
+}
