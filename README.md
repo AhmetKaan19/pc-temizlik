@@ -2,7 +2,7 @@
 
 Claude Code için bir bilgisayar temizliği skill'i. Mac ya da Windows bir bilgisayarı **sahibiyle birlikte** tarar, bulguları gruplar ve yalnızca sahibinin onayladıklarını çöpe taşır.
 
-*A Claude Code skill that audits a Mac or Windows computer together with its owner, groups the findings and only moves approved items to the Trash / Recycle Bin. Instructions are in Turkish.*
+**Türkçe** · [English](#english)
 
 ## Ne yapar
 
@@ -51,5 +51,63 @@ Sonra Claude Code'a "bilgisayarımı kontrol et" ya da "yer açalım" demen yete
 Test senaryoları: [`skills/pc-temizlik/evals/senaryolar.md`](skills/pc-temizlik/evals/senaryolar.md)
 
 ## Lisans
+
+MIT
+
+---
+
+## English
+
+A Claude Code skill for cleaning up a computer. It audits a Mac or Windows machine **together with its owner**, groups the findings and moves only the items the owner approves to the Trash or Recycle Bin.
+
+> The skill's instructions and messages are written in Turkish. Claude reads them in any language, so it works for English speakers too: just ask in English and Claude will answer in English.
+
+### What it does
+
+1. **Scans (read-only):** disk usage, largest folders, caches, installed apps and their code signatures, startup items and background services.
+2. **Finds orphaned services:** background services, scheduled tasks and startup items whose app has been uninstalled. These no longer receive updates, which makes them the most important security finding.
+3. **Groups the findings:**
+
+   | Group | Contents |
+   |---|---|
+   | A – Safe | Caches, build leftovers, old installer files |
+   | B – Apps | Apps not opened in a long time, or with weak trust signals |
+   | C – Leftovers | Services, folders and settings left behind by removed apps |
+   | D – Personal | Videos, projects, game saves: reported only |
+
+4. **Asks, then cleans:** applies only the groups the owner picks. Nothing is permanently deleted; files go to a dated folder in the Trash.
+5. **Verifies:** runs a second sweep for leftovers of removed apps, then shows free space before and after.
+
+### Safety principles
+
+- The scan changes nothing and does not need admin rights.
+- Personal files default to "keep".
+- On an ambiguous answer, Claude asks instead of deleting.
+- Claude never runs admin commands itself; it hands a ready-made command to the computer's owner.
+- On Windows it never writes to the Registry.
+
+### Installation
+
+**As a Claude Code plugin:**
+
+```
+/plugin marketplace add AhmetKaan19/pc-temizlik
+/plugin install pc-temizlik@pc-temizlik
+```
+
+**Manually:** copy the `skills/pc-temizlik` folder to:
+- Mac: `~/.claude/skills/pc-temizlik`
+- Windows: `C:\Users\<user>\.claude\skills\pc-temizlik`
+
+Then tell Claude Code something like "check my computer" or "free up some disk space".
+
+### Status
+
+- **Mac:** written from the steps of a real cleanup; the scan script has been tested.
+- **Windows:** the scan script has not yet been run on a real Windows machine. Expect rough edges at first.
+
+Test scenarios (Turkish): [`skills/pc-temizlik/evals/senaryolar.md`](skills/pc-temizlik/evals/senaryolar.md)
+
+### License
 
 MIT
